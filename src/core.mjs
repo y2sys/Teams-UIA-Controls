@@ -38,3 +38,8 @@ export function icon(kind, view, platform = '') {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144"><rect width="144" height="144" rx="16" fill="#101827"/><g fill="none" stroke="${view.color}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">${glyphs[kind]}${slash ? '<path d="m36 29 73 72"/>' : ''}</g><text x="72" y="123" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="17" fill="#e2e8f0">${platform === 'teams' ? 'Teams' : ''}</text></svg>`;
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
+
+// Marketplace action-list icons use white strokes and a transparent background.
+export function actionListIcon(kind) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="20 16 104 104"><g fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">${glyphs[kind]}</g></svg>`;
+}

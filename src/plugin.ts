@@ -4,6 +4,11 @@ import { fileURLToPath } from 'node:url';
 import { TeamsProvider } from './bridge.mjs';
 import { selectSession, presentation, icon } from './core.mjs';
 
+// The Marketplace build has its own publisher-qualified identity. Local builds
+// keep the existing UUID so the user's current key assignments remain valid.
+declare const __PLUGIN_UUID__: string;
+const PLUGIN_UUID = __PLUGIN_UUID__;
+
 const provider = new TeamsProvider(path.join(path.dirname(fileURLToPath(import.meta.url)), 'MeetingControls.Helper.exe'));
 const locks = new Set<string>();
 let target = 'auto';
@@ -29,6 +34,10 @@ class MeetingAction extends SingletonAction {
   async onDidReceiveSettings(_ev: DidReceiveSettingsEvent) { this.rendered.clear(); await this.render(); }
   async onPropertyInspectorDidAppear() { await sendStatus(); }
   async onSendToPlugin(ev: any) {
+    if (ev.payload?.event === 'open-runtime') {
+      await streamDeck.system.openUrl('https://dotnet.microsoft.com/en-us/download/dotnet/10.0');
+      return;
+    }
     if (ev.payload?.event === 'target' && typeof ev.payload.target === 'string') {
       target = ev.payload.target;
       await streamDeck.settings.setGlobalSettings({ target });
@@ -47,13 +56,13 @@ class MeetingAction extends SingletonAction {
     finally { setTimeout(() => locks.delete(session.id), 150); }
   }
 }
-@action({ UUID: 'com.meetingcontrols.streamdeck.microphone' })
+@action({ UUID: `${PLUGIN_UUID}.microphone` })
 class Microphone extends MeetingAction { constructor() { super('microphone'); } }
-@action({ UUID: 'com.meetingcontrols.streamdeck.camera' })
+@action({ UUID: `${PLUGIN_UUID}.camera` })
 class Camera extends MeetingAction { constructor() { super('camera'); } }
-@action({ UUID: 'com.meetingcontrols.streamdeck.share' })
+@action({ UUID: `${PLUGIN_UUID}.share` })
 class Share extends MeetingAction { constructor() { super('share'); } }
-@action({ UUID: 'com.meetingcontrols.streamdeck.leave' })
+@action({ UUID: `${PLUGIN_UUID}.leave` })
 class Leave extends MeetingAction { constructor() { super('leave'); } }
 for (const handler of [new Microphone(), new Camera(), new Share(), new Leave()]) streamDeck.actions.registerAction(handler);
 async function sendStatus() {

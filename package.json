@@ -1,11 +1,14 @@
 {
   "name": "teams-uia-controls",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Windows UI AutomationでMicrosoft Teamsを制御するStream Deckプラグイン。",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:marketplace": "node scripts/build.mjs --marketplace",
+    "assets:marketplace": "node scripts/marketplace-assets.mjs",
+    "prepare:marketplace": "node scripts/prepare-marketplace.mjs",
     "test": "node --test tests/*.test.mjs && node scripts/test-helper.mjs",
     "test:core": "node --test tests/*.test.mjs",
     "test:helper": "node scripts/test-helper.mjs",

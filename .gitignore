@@ -7,3 +7,4 @@ node_modules/
 **/obj/
 native/**/bin/
 tests/Helper.Checks/bin/
+dist/

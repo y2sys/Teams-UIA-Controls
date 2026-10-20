@@ -44,7 +44,11 @@ Windows標準の.NET Framework 4.xは.NET 10の代わりにはなりません。
 
 マイク・カメラの操作後にTeamsの実状態変化を確認すると、画面中央にアイコンと状態を約1.1秒表示します。表示はフォーカスを奪わず、クリックを透過します。初期状態、状態不明、操作未反映、共有・退出では表示しません。
 
-## 開発
+## Marketplaceへの公開準備
+
+無料公開・作者名 `yazirupi` の申請候補を `npm run prepare:marketplace` で生成できます。[申請準備手順](marketplace/README.md)、[英語セットアップ](docs/SETUP.en.md)、[プライバシー](docs/PRIVACY.md)を参照してください。公開用は作者名を含む別識別子を使い、既存の開発版のキー配置を維持します。申請・公開は自動では行いません。
+
+## 開発環境
 
 開発時にはNode.js 24以上と.NET 10 SDKが必要です。`global.json` で.NET 10のSDKを選択します。プロジェクト内の `.tools/dotnet/dotnet.exe` があればそれを優先し、それ以外はPATH上の `dotnet` を使います。`DOTNET_EXE` でSDKの場所を指定することもできます。
 

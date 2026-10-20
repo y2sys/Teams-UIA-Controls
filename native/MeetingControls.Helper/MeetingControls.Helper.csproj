@@ -11,7 +11,7 @@
     <PublishTrimmed>false</PublishTrimmed>
     <DebugType>embedded</DebugType>
     <AssemblyName>MeetingControls.Helper</AssemblyName>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
     <Title>Teams UIA Controls Helper</Title>
     <Product>Teams UIA Controls</Product>
     <Description>Windows UI Automationでデスクトップ版Microsoft Teamsを制御する補助アプリ。</Description>

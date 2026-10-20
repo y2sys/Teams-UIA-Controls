@@ -1,0 +1,11 @@
+{
+  "uuid": "com.yazirupi.teams-uia-controls",
+  "name": "Teams UIA Controls",
+  "author": "yazirupi",
+  "version": "0.2.3.0",
+  "price": "free",
+  "publicLinksVerified": true,
+  "description": "Control Microsoft Teams desktop meetings from Stream Deck on Windows 11. Toggle your microphone and camera, open the sharing picker or stop sharing, and leave the meeting. Keys reflect the observed Teams state. Requires .NET 10 Desktop Runtime (Windows x64), installed separately. Japanese interface; English Teams labels are recognized but have not been verified in a live meeting. Personal Teams accounts have been tested; work and school accounts need further validation. Uses Windows UI Automation, with no Teams OAuth or app registration. Teams can briefly come to the foreground during microphone or camera operations. This independent plugin is not affiliated with Microsoft or Elgato. AI assistance was used for implementation, documentation and promotional graphics.",
+  "website": "https://github.com/y2sys/Teams-UIA-Controls",
+  "support": "https://github.com/y2sys/Teams-UIA-Controls/issues"
+}

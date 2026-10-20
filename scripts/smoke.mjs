@@ -4,6 +4,10 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, mkdtempSync, mkdirSync, readdirSync, copyFileSync, unlinkSync, rmdirSync } from 'node:fs';
 import os from 'node:os';
 import { TeamsProvider } from '../src/bridge.mjs';
+const directoryFlag = process.argv.indexOf('--plugin-dir');
+const pluginDirectory = directoryFlag < 0 ? 'com.meetingcontrols.streamdeck.sdPlugin' : process.argv[directoryFlag + 1];
+if (!pluginDirectory) throw new Error('--plugin-dir requires a directory');
+const helperPath = path.resolve(pluginDirectory, 'bin/MeetingControls.Helper.exe');
 if (process.argv.includes('--isolated')) {
   // Only this child sees missing runtime roots; never changes machine settings.
   const missing = mkdtempSync(path.join(os.tmpdir(), 'meetingcontrols-runtime-check-'));
@@ -20,7 +24,7 @@ if (process.argv.includes('--isolated')) {
     copyFileSync(path.join(hostRoot, version, 'hostfxr.dll'), path.join(hostDirectory, 'hostfxr.dll'));
   }
   try {
-  const result = spawnSync(path.resolve('com.meetingcontrols.streamdeck.sdPlugin/bin/MeetingControls.Helper.exe'), [], {
+  const result = spawnSync(helperPath, [], {
     windowsHide: true, encoding: 'utf8', timeout: 10000,
     env: { ...process.env, PATH: '', DOTNET_ROOT: missing, DOTNET_ROOT_X64: missing,
       DOTNET_MULTILEVEL_LOOKUP: '0', DOTNET_DISABLE_GUI_ERRORS: '1' }
@@ -38,7 +42,7 @@ if (process.argv.includes('--isolated')) {
   }
   process.exit(0);
 }
-const provider = new TeamsProvider(path.resolve('com.meetingcontrols.streamdeck.sdPlugin/bin/MeetingControls.Helper.exe'));
+const provider = new TeamsProvider(helperPath);
 const timeout = setTimeout(() => { provider.stop(); console.error('Bridge smoke test timed out'); process.exitCode = 1; }, 12000);
 try {
   const state = await new Promise(resolve => { provider.once('state', resolve); provider.start(); });
