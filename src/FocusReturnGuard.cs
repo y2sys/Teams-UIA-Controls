@@ -27,11 +27,11 @@ public sealed class FocusReturnGuard {
         this.original = original; this.owner = owner; this.input = input;
         started = clock(); Outcome = "Watching";
     }
-    public static FocusReturnGuard Capture(uint teams) {
+    public static FocusReturnGuard? Capture(uint teams) {
         return Capture(new NativeMeetingFocusApi(), teams,
             () => (long)(Stopwatch.GetTimestamp() * 1000.0 / Stopwatch.Frequency));
     }
-    public static FocusReturnGuard Capture(IMeetingFocusApi api, uint teams, Func<long> clock) {
+    public static FocusReturnGuard? Capture(IMeetingFocusApi api, uint teams, Func<long> clock) {
         var original = api.Foreground();
         uint owner = api.Owner(original), stamp;
         if (original == IntPtr.Zero || owner == 0 || owner == teams ||
@@ -92,7 +92,7 @@ public static class MeetingPhysicalInput {
     [DllImport("user32.dll")] static extern bool UnhookWindowsHookEx(IntPtr hook);
     [DllImport("user32.dll")] static extern IntPtr CallNextHookEx(IntPtr hook, int code, IntPtr message, IntPtr data);
     [DllImport("user32.dll")] static extern int GetMessage(out Message message, IntPtr hwnd, uint min, uint max);
-    [DllImport("kernel32.dll", CharSet=CharSet.Auto)] static extern IntPtr GetModuleHandle(string name);
+    [DllImport("kernel32.dll", CharSet=CharSet.Auto)] static extern IntPtr GetModuleHandle(string? name);
     static readonly object Sync = new object();
     static readonly ManualResetEvent Ready = new ManualResetEvent(false);
     static readonly Hook Keyboard = (code, message, data) => Observe(code, message, data, 8, 0x10);

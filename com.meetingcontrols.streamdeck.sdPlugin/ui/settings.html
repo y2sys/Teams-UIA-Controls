@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><style>
+<html lang="ja"><head><meta charset="utf-8"><title>Teams UIA Controls</title><style>
 body{background:#2d2d2d;color:#eee;font:12px 'Segoe UI',sans-serif;padding:12px}select{width:100%;padding:8px;background:#444;color:white;border:1px solid #777}p{line-height:1.6}button{margin-top:10px;padding:6px 14px}#status{color:#ccc}
 </style></head><body>
-<label for="target">操作対象（4ボタン共通）</label><select id="target"><option value="auto">自動選択</option></select>
-<p>通話が1つなら自動で選択します。複数の通話がある場合は対象を指定してください。現在はTeamsに対応しています。</p>
+<label for="target">操作するTeams会議（4ボタン共通）</label><select id="target"><option value="auto">自動選択</option></select>
+<p>デスクトップ版TeamsをWindows UI Automationで操作します。会議が1つなら自動で選択します。複数の会議がある場合は対象を指定してください。</p>
 <p>共有ボタンは共有先の選択画面を開きます。共有中は停止します。退出ボタンは通常押下で自分が退出します。</p>
-<p id="status">接続中…</p><button id="refresh">更新</button>
+<p id="status">Teamsの状態を確認中…</p><button id="refresh">更新</button>
 <script>
 let socket, context, actionId;
 function send(payload){if(socket?.readyState===1)socket.send(JSON.stringify({event:'sendToPlugin',action:actionId,context,payload}));}
@@ -17,7 +17,7 @@ window.connectElgatoStreamDeckSocket=function(port,uuid,registerEvent,info,actio
  for(const s of state.sessions)select.add(new Option('Teams：'+s.title,s.id));
  if(state.target!=='auto'&&!state.sessions.some(s=>s.id===state.target))select.add(new Option('指定した会議は終了しています',state.target));
  select.value=state.target;
- const labels={idle:'通話していません',ambiguous:'複数の通話があります。対象を選択してください',missing:'指定した会議は終了しています',unknown:'状態を取得できません'};
+ const labels={idle:'Teamsで通話していません',ambiguous:'複数のTeams会議があります。対象を選択してください',missing:'指定した会議は終了しています',unknown:'Teamsの状態を取得できません'};
  document.getElementById('status').textContent=state.error?'Teamsの情報を取得できません':labels[state.reason]||(state.sessions.some(s=>s.picker)?'共有先を選択中':'Teamsに接続しています');};
 };
 document.getElementById('target').onchange=e=>send({event:'target',target:e.target.value});

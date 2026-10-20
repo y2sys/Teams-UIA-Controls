@@ -3,3 +3,7 @@ node_modules/
 *.streamDeckPlugin
 *.log
 .diagnostics/
+.tools/
+**/obj/
+native/**/bin/
+tests/Helper.Checks/bin/

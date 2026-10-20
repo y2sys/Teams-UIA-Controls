@@ -3,7 +3,7 @@ import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import { setTimeout as delay } from 'node:timers/promises';
 import { TeamsProvider } from '../src/bridge.mjs';
-const provider = new TeamsProvider(path.resolve('com.meetingcontrols.streamdeck.sdPlugin/bin/teams.ps1'));
+const provider = new TeamsProvider(path.resolve('com.meetingcontrols.streamdeck.sdPlugin/bin/MeetingControls.Helper.exe'));
 const timer = setTimeout(() => { provider.stop(); console.error('Diagnostic timed out'); process.exit(1); }, 20000);
 try {
   await new Promise(resolve => { provider.once('state', resolve); provider.start(); });

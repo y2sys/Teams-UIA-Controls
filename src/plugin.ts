@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { TeamsProvider } from './bridge.mjs';
 import { selectSession, presentation, icon } from './core.mjs';
 
-const provider = new TeamsProvider(path.join(path.dirname(fileURLToPath(import.meta.url)), 'teams.ps1'));
+const provider = new TeamsProvider(path.join(path.dirname(fileURLToPath(import.meta.url)), 'MeetingControls.Helper.exe'));
 const locks = new Set<string>();
 let target = 'auto';
 const instances: MeetingAction[] = [];

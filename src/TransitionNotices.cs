@@ -13,9 +13,9 @@ public sealed class MeetingTransitionNotices {
         if (kind != "microphone" && kind != "camera") return;
         pending[session + "/" + kind] = new Pending { Before = before, Expires = now + 3000 };
     }
-    public MeetingTransitionNotice Observe(string session, string kind, bool? state, long now) {
+    public MeetingTransitionNotice? Observe(string session, string kind, bool? state, long now) {
         string key = session + "/" + kind;
-        Pending item;
+        Pending? item;
         if (!pending.TryGetValue(key, out item)) return null;
         if (now > item.Expires) { pending.Remove(key); return null; }
         if (!state.HasValue || state.Value == item.Before) return null;

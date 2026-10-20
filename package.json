@@ -1,15 +1,22 @@
 {
-  "name": "online-meeting-plugin",
-  "version": "0.1.0",
+  "name": "teams-uia-controls",
+  "version": "0.2.2",
+  "description": "Windows UI AutomationでMicrosoft Teamsを制御するStream Deckプラグイン。",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test tests/*.test.mjs && node scripts/test-helper.mjs",
+    "test:core": "node --test tests/*.test.mjs",
+    "test:helper": "node scripts/test-helper.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
+    "test:runtime": "node scripts/smoke.mjs --isolated",
     "typecheck": "tsc --noEmit",
     "validate": "streamdeck validate com.meetingcontrols.streamdeck.sdPlugin",
     "pack": "streamdeck pack com.meetingcontrols.streamdeck.sdPlugin --no-update-check",
-    "link": "streamdeck link com.meetingcontrols.streamdeck.sdPlugin"
+    "link": "streamdeck link com.meetingcontrols.streamdeck.sdPlugin",
+    "stop": "streamdeck stop com.meetingcontrols.streamdeck",
+    "restart": "streamdeck restart com.meetingcontrols.streamdeck"
   },
   "dependencies": {
     "@elgato/streamdeck": "3.0.3"

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <DebugType>embedded</DebugType>
+    <AssemblyName>MeetingControls.Helper</AssemblyName>
+    <Version>0.2.2</Version>
+    <Title>Teams UIA Controls Helper</Title>
+    <Product>Teams UIA Controls</Product>
+    <Description>Windows UI Automationでデスクトップ版Microsoft Teamsを制御する補助アプリ。</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/FocusReturnGuard.cs" Link="FocusReturnGuard.cs" />
+    <Compile Include="../../src/TransitionNotices.cs" Link="TransitionNotices.cs" />
+    <Compile Include="../../src/MeetingOsd.cs" Link="MeetingOsd.cs" />
+  </ItemGroup>
+</Project>

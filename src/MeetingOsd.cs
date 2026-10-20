@@ -7,18 +7,19 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Path = System.Windows.Shapes.Path;
 
 // A separate STA dispatcher keeps drawing and timers off the UIA command loop.
 public static class MeetingOsd {
     static readonly object Sync = new object();
     static readonly ManualResetEvent Ready = new ManualResetEvent(false);
     static bool started;
-    static Dispatcher dispatcher;
-    static Window window;
-    static TextBlock caption;
-    static Path glyph;
-    static DispatcherTimer timer;
-    public static string Error { get; private set; }
+    static Dispatcher dispatcher = null!;
+    static Window window = null!;
+    static TextBlock caption = null!;
+    static Path glyph = null!;
+    static DispatcherTimer timer = null!;
+    public static string? Error { get; private set; }
     [StructLayout(LayoutKind.Sequential)] struct Rect { public int left, top, right, bottom; }
     [StructLayout(LayoutKind.Sequential)] struct MonitorInfo { public int size; public Rect monitor, work; public uint flags; }
     [DllImport("user32.dll")] static extern IntPtr GetForegroundWindow();
@@ -47,7 +48,7 @@ public static class MeetingOsd {
         window = new Window { Width = 240, Height = 176, WindowStyle = WindowStyle.None,
             AllowsTransparency = true, Background = Brushes.Transparent, ResizeMode = ResizeMode.NoResize,
             ShowInTaskbar = false, ShowActivated = false, Focusable = false, Topmost = true,
-            IsHitTestVisible = false, Title = "Meeting Controls Status" };
+            IsHitTestVisible = false, Title = "Teams UIA Controls Status" };
         var stack = new StackPanel { Margin = new Thickness(18, 12, 18, 14) };
         stack.Children.Add(new TextBlock { Text = "Teams", Foreground = new SolidColorBrush(Color.FromRgb(166, 180, 201)), FontSize = 13, HorizontalAlignment = HorizontalAlignment.Center });
         glyph = new Path { StrokeThickness = 5, StrokeStartLineCap = PenLineCap.Round, StrokeEndLineCap = PenLineCap.Round,

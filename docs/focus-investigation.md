@@ -1,5 +1,7 @@
 # Teamsのミュート操作に伴うフォーカス移動の切り分け
 
+この文書はPowerShell版で実施した調査の記録。以下に記載する診断用 `.ps1` は、C#実行ファイルへの移行に伴い削除した。現在の実装は `native/MeetingControls.Helper/` にあり、フォーカス復帰・状態通知などの回帰チェックは `npm run test:helper` で実行する。移行によって操作経路そのものを変更したわけではなく、UI Automationと既存の緩和策を維持している。
+
 ## 結論
 
 2026-10-20、個人用Teams 26260.1717.5229.7049のテスト会議で、Stream Deckプラグインを停止した状態でも、UI Automationの `InvokePattern.Invoke()` だけでマイクを操作すると、Teamsが前面へ出ることを確認した。

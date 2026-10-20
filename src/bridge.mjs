@@ -1,7 +1,6 @@
 import { spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { EventEmitter } from 'node:events';
-import path from 'node:path';
 
 export class TeamsProvider extends EventEmitter {
   platform = 'teams';
@@ -9,12 +8,11 @@ export class TeamsProvider extends EventEmitter {
   pending = new Map();
   sequence = 0;
   stopped = false;
-  constructor(script) { super(); this.script = script; }
+  constructor(executable) { super(); this.executable = executable; }
   start() {
     if (this.stopped) return;
     this.snapshot = undefined;
-    const exe = path.join(process.env.SystemRoot ?? 'C:\\Windows', 'System32/WindowsPowerShell/v1.0/powershell.exe');
-    const child = this.child = spawn(exe, ['-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', this.script], { windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
+    const child = this.child = spawn(this.executable, [], { windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
     let lastMessage = Date.now();
     const lines = createInterface({ input: child.stdout });
     lines.on('line', line => {

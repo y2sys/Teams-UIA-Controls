@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
   "UUID": "com.meetingcontrols.streamdeck",
-  "Name": "Meeting Controls",
-  "Author": "Meeting Controls",
-  "Description": "共通ボタンでWeb会議を操作します。現在はWindows版Teamsに対応。",
-  "Version": "0.1.0.0",
+  "Name": "Teams UIA Controls",
+  "Author": "Teams UIA Controls",
+  "Description": "Windows UI Automationでデスクトップ版Microsoft Teamsのマイク・カメラ・画面共有・退出を操作します。.NET 10 Desktop Runtime（Windows x64）が必要です。",
+  "Version": "0.2.2.0",
   "SDKVersion": 2,
   "CodePath": "bin/plugin.js",
   "Nodejs": {
@@ -20,7 +20,7 @@
     }
   ],
   "Icon": "imgs/plugin",
-  "Category": "Meeting Controls",
+  "Category": "Teams UIA Controls",
   "CategoryIcon": "imgs/microphone",
   "Actions": [
     {

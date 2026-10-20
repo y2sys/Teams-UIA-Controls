@@ -14,7 +14,7 @@ public static class MeetingOsdChecks {
         Thread.Sleep(200);
         Check(MeetingOsd.Error == null, "OSD rendering failed: " + MeetingOsd.Error);
         Check(GetForegroundWindow() == before, "OSD changed foreground window");
-        var window = (Window)typeof(MeetingOsd).GetField("window", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetValue(null);
+        var window = (Window)typeof(MeetingOsd).GetField("window", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!.GetValue(null)!;
         window.Dispatcher.Invoke(new Action(() => {
             Check(window.IsVisible, "OSD is not visible");
             var hwnd = new WindowInteropHelper(window).Handle;
