@@ -1,0 +1,25 @@
+{
+  "name": "online-meeting-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "validate": "streamdeck validate com.meetingcontrols.streamdeck.sdPlugin",
+    "pack": "streamdeck pack com.meetingcontrols.streamdeck.sdPlugin --no-update-check",
+    "link": "streamdeck link com.meetingcontrols.streamdeck.sdPlugin"
+  },
+  "dependencies": {
+    "@elgato/streamdeck": "3.0.3"
+  },
+  "devDependencies": {
+    "@elgato/cli": "1.10.3",
+    "@resvg/resvg-js": "2.6.2",
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "node": "24.22.0",
+    "typescript": "7.0.2"
+  }
+}

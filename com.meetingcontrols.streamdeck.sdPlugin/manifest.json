@@ -1,0 +1,95 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "UUID": "com.meetingcontrols.streamdeck",
+  "Name": "Meeting Controls",
+  "Author": "Meeting Controls",
+  "Description": "共通ボタンでWeb会議を操作します。現在はWindows版Teamsに対応。",
+  "Version": "0.1.0.0",
+  "SDKVersion": 2,
+  "CodePath": "bin/plugin.js",
+  "Nodejs": {
+    "Version": "24"
+  },
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Icon": "imgs/plugin",
+  "Category": "Meeting Controls",
+  "CategoryIcon": "imgs/microphone",
+  "Actions": [
+    {
+      "UUID": "com.meetingcontrols.streamdeck.microphone",
+      "Name": "マイク",
+      "Icon": "imgs/microphone",
+      "Tooltip": "マイク",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "PropertyInspectorPath": "ui/settings.html",
+      "States": [
+        {
+          "Image": "imgs/microphone",
+          "ShowTitle": false
+        }
+      ]
+    },
+    {
+      "UUID": "com.meetingcontrols.streamdeck.camera",
+      "Name": "カメラ",
+      "Icon": "imgs/camera",
+      "Tooltip": "カメラ",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "PropertyInspectorPath": "ui/settings.html",
+      "States": [
+        {
+          "Image": "imgs/camera",
+          "ShowTitle": false
+        }
+      ]
+    },
+    {
+      "UUID": "com.meetingcontrols.streamdeck.share",
+      "Name": "画面共有",
+      "Icon": "imgs/share",
+      "Tooltip": "画面共有",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "PropertyInspectorPath": "ui/settings.html",
+      "States": [
+        {
+          "Image": "imgs/share",
+          "ShowTitle": false
+        }
+      ]
+    },
+    {
+      "UUID": "com.meetingcontrols.streamdeck.leave",
+      "Name": "退出",
+      "Icon": "imgs/leave",
+      "Tooltip": "退出",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "PropertyInspectorPath": "ui/settings.html",
+      "States": [
+        {
+          "Image": "imgs/leave",
+          "ShowTitle": false
+        }
+      ]
+    }
+  ]
+}
