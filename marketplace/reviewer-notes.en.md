@@ -1,7 +1,7 @@
 # Reviewer notes — Teams UIA Controls
 
-Publisher: yazirupi. Free submission candidate, version 0.2.3.
-Plugin UUID: com.yazirupi.teams-uia-controls.
+Publisher: y2sys. Free submission candidate, version 0.2.3.
+Plugin UUID: com.y2sys.teams-uia-controls.
 
 ## How to review
 

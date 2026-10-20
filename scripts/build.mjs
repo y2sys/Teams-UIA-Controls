@@ -35,7 +35,7 @@ await writeFile(`${root}/manifest.json`, JSON.stringify({
   UUID: uuid, Name: product.name, Author: product.author,
   Description: product.description,
   ...(product.publicLinksVerified ? { URL: product.website } : {}),
-  Version: product.version, SDKVersion: 2, CodePath: 'bin/plugin.js',
+  Version: product.version, SDKVersion: marketplace ? 3 : 2, CodePath: 'bin/plugin.js',
   Nodejs: { Version: '24' }, Software: { MinimumVersion: '7.1' },
   OS: [{ Platform: 'windows', MinimumVersion: marketplace ? '10.0.22000' : '10' }], Icon: 'imgs/plugin',
   Category: 'Teams UIA Controls', CategoryIcon: 'imgs/microphone',

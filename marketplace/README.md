@@ -1,6 +1,6 @@
 # Marketplace申請準備
 
-作者 **yazirupi**／無料公開／製品名 **Teams UIA Controls**。ここにある資料は申請準備用です。Maker Consoleへのアップロード・規約同意・審査提出・公開は行っていません。承認を保証するものではありません。
+作者 **y2sys**／無料公開／製品名 **Teams UIA Controls**。ここにある資料は申請準備用です。Maker Consoleへのアップロード・規約同意・審査提出・公開は行っていません。承認を保証するものではありません。
 
 ## 準備コマンド
 
@@ -10,7 +10,7 @@ npm run prepare:marketplace
 
 Node.js 24と.NET 10 SDKが必要です。出力先は `dist/marketplace/`。そこにある `.streamDeckPlugin` をアップロードしてください。PNGは別途メディア欄にアップロードする資料であり、プラグイン本体の代わりにはなりません。
 
-- `com.yazirupi.teams-uia-controls.streamDeckPlugin`：申請用プラグイン。
+- `com.y2sys.teams-uia-controls.streamDeckPlugin`：申請用プラグイン。
 - `app-icon.png`：288×288。
 - `thumbnail.png`：1920×960。
 - `gallery-01-states.png`、`gallery-02-sharing.png`、`gallery-03-setup.png`：各1920×960。
@@ -22,11 +22,13 @@ Node.js 24と.NET 10 SDKが必要です。出力先は `dist/marketplace/`。そ
 
 ## 公開用と開発用の識別子
 
-公開候補は `com.yazirupi.teams-uia-controls`、従来の開発版は `com.meetingcontrols.streamdeck` です。公開要件に合わせ作者と製品名を含む識別子を用意し、既存のキー配置は変更しません。公開版は別プラグインになるためキーを配置し直す必要があります。同じ操作を両方から重複送信しないでください。公開後は識別子を固定します。
+申請版は `SDKVersion: 3` を宣言します。DRM保護はMaker Consoleで処理された後に適用されます。アップロード後に保護済みパッケージをダウンロードし、補助プロセスの起動と4操作を再確認してください。ローカルのパッケージ検証だけではDRM適用後の動作確認にはなりません。[公式DRM手順](https://docs.elgato.com/streamdeck/sdk/introduction/distribution/)
+
+公開候補は `com.y2sys.teams-uia-controls`、従来の開発版は `com.meetingcontrols.streamdeck` です。公開要件に合わせ作者と製品名を含む識別子を用意し、既存のキー配置は変更しません。公開版は別プラグインになるためキーを配置し直す必要があります。同じ操作を両方から重複送信しないでください。公開後は識別子を固定します。
 
 ## 提出前に本人が確認すること
 
-1. [Maker Console](https://maker.elgato.com/)で作者組織を作り、組織名が `yazirupi` と一致することを確認。契約内容は本人が確認・同意します。
+1. [Maker Console](https://maker.elgato.com/)で作者組織を作り、組織名が `y2sys` と一致することを確認。契約内容は本人が確認・同意します。
 2. 希望する製品名がMarketplaceで空いているか確認。無料を選択します。作成後の名称・価格形態変更には制約があります。
 3. GitHubのREADME・セットアップ・プライバシー・Issuesリンクが、ログアウト状態で閲覧できることと、公開してよい内容であることを確認。
 4. 別PCまたはクリーンなWindows 11 x64で、.NET 10 Desktop Runtimeを先に導入し、**申請用パッケージ**をインストールして4操作を確認。仕事用アカウントと英語Teamsは未検証なので、確認するまでは対応済みと記載しません。

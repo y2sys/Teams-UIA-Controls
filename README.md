@@ -46,7 +46,7 @@ Windows標準の.NET Framework 4.xは.NET 10の代わりにはなりません。
 
 ## Marketplaceへの公開準備
 
-無料公開・作者名 `yazirupi` の申請候補を `npm run prepare:marketplace` で生成できます。[申請準備手順](marketplace/README.md)、[英語セットアップ](docs/SETUP.en.md)、[プライバシー](docs/PRIVACY.md)を参照してください。公開用は作者名を含む別識別子を使い、既存の開発版のキー配置を維持します。申請・公開は自動では行いません。
+無料公開・作者名 `y2sys` の申請候補を `npm run prepare:marketplace` で生成できます。[申請準備手順](marketplace/README.md)、[英語セットアップ](docs/SETUP.en.md)、[プライバシー](docs/PRIVACY.md)を参照してください。公開用は作者名を含む別識別子を使い、既存の開発版のキー配置を維持します。申請・公開は自動では行いません。
 
 ## 開発環境
 

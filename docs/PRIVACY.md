@@ -1,6 +1,6 @@
 # Privacy — Teams UIA Controls
 
-Publisher: yazirupi. Applies to the plugin code in this repository.
+Publisher: y2sys. Applies to the plugin code in this repository.
 
 The plugin runs locally. It reads Teams window metadata, meeting titles, button
 labels and microphone/camera/sharing state through Windows UI Automation. Meeting

@@ -17,6 +17,7 @@ const manifest = JSON.parse(await readFile(`${directory}/manifest.json`, 'utf8')
 assert.equal(manifest.Author, product.author);
 assert.equal(manifest.UUID, product.uuid);
 assert.equal(manifest.Version, product.version);
+assert.equal(manifest.SDKVersion, 3, 'Marketplace package must declare DRM-compatible SDKVersion 3');
 assert.ok(product.description.length >= 250 && product.description.length <= 1500);
 const bundle = await readFile(`${directory}/bin/plugin.js`, 'utf8');
 assert.ok(bundle.includes(product.uuid));

@@ -1,6 +1,6 @@
 # Teams UIA Controls — Setup
 
-Publisher: yazirupi. Independent integration; not affiliated with Microsoft or Elgato.
+Publisher: y2sys. Independent integration; not affiliated with Microsoft or Elgato.
 
 ## Requirements
 

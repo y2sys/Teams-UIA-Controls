@@ -2,7 +2,7 @@
 
 Name: Teams UIA Controls
 
-Maker: yazirupi
+Maker: y2sys
 
 Price: Free
 
