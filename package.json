@@ -29,7 +29,7 @@
     "@resvg/resvg-js": "2.6.2",
     "@types/node": "26.6.5",
     "esbuild": "0.28.2",
-    "node": "24.22.0",
+    "node": "24.22.1",
     "typescript": "7.0.2"
   }
 }
