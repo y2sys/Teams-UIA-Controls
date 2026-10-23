@@ -1,6 +1,6 @@
 {
   "name": "teams-uia-controls",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Windows UI AutomationでMicrosoft Teamsを制御するStream Deckプラグイン。",
   "private": true,
   "type": "module",

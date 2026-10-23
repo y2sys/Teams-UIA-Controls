@@ -44,6 +44,7 @@ internal static class Program
         reader.Start();
         MeetingOsd.Start();
         FocusReturnGuard? guard = null;
+        RdpFocusScope? pendingRdp = null;
         var refreshes = new List<long>();
         long nextPoll = 0;
 
@@ -71,6 +72,7 @@ internal static class Program
             while (Volatile.Read(ref closed) == 0)
             {
                 if (guard is not null && !guard.TryRestore()) guard = null;
+                if (pendingRdp is not null && !pendingRdp.TryRestore()) { pendingRdp.Dispose(); pendingRdp = null; }
                 while (input.TryDequeue(out var line))
                 {
                     HelperCommand? command = null;
@@ -78,10 +80,31 @@ internal static class Program
                     {
                         command = JsonSerializer.Deserialize<HelperCommand>(line, Json) ?? throw new InvalidOperationException();
                         guard = null;
+                        pendingRdp?.Dispose(); pendingRdp = null;
                         var (session, element, process) = controller.Resolve(command);
-                        if (command.Kind is "microphone" or "camera") guard = FocusReturnGuard.Capture(process);
-                        try { controller.Invoke(command, element); }
-                        finally { if (guard is not null && !guard.TryRestore()) guard = null; }
+                        RdpFocusScope? rdp = null;
+                        try
+                        {
+                            var restoreAfter = command.Kind is "microphone" or "camera";
+                            rdp = RdpFocusScope.Begin(controller.MeetingWindow(session.Id), process, restoreAfter);
+                            if (rdp is not null)
+                            {
+                                // Window activation can change the UI tree. Revalidate the exact
+                                // requested meeting, then check user input again before invoking.
+                                (_, element, _) = controller.Resolve(command);
+                                rdp.EnsureReadyToInvoke();
+                            }
+                            else if (restoreAfter) guard = FocusReturnGuard.Capture(process);
+                            controller.Invoke(command, element);
+                            rdp?.MarkActionCompleted();
+                        }
+                        finally
+                        {
+                            if (rdp is not null && command.Kind is "microphone" or "camera" && rdp.TryRestore())
+                                pendingRdp = rdp;
+                            else rdp?.Dispose();
+                            if (guard is not null && !guard.TryRestore()) guard = null;
+                        }
                         if (command.Kind is "microphone" or "camera")
                             notices.Begin(command.SessionId, command.Kind, (command.Kind == "microphone" ? session.Muted : session.CameraOn)!.Value, TeamsController.Now);
                         Publish();
@@ -100,10 +123,11 @@ internal static class Program
                     nextPoll = TeamsController.Now + 750;
                 }
                 var wake = refreshes.Aggregate(nextPoll, Math.Min);
-                ready.WaitOne((int)Math.Clamp(wake - TeamsController.Now, 0, 750));
+                ready.WaitOne((int)Math.Clamp(wake - TeamsController.Now, 0, pendingRdp is null ? 750 : 20));
             }
         }
         catch (IOException) { return 0; }
+        finally { pendingRdp?.Dispose(); }
         return 0;
     }
 }

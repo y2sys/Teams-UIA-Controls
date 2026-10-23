@@ -2,9 +2,10 @@
   "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
   "UUID": "com.meetingcontrols.streamdeck",
   "Name": "Teams UIA Controls",
-  "Author": "Teams UIA Controls",
-  "Description": "Windows UI Automationでデスクトップ版Microsoft Teamsのマイク・カメラ・画面共有・退出を操作します。.NET 10 Desktop Runtime（Windows x64）が必要です。",
-  "Version": "0.2.2.0",
+  "Author": "y2sys",
+  "Description": "Control Microsoft Teams desktop meetings from Stream Deck on Windows 11. Toggle your microphone and camera, open the sharing picker or stop sharing, and leave the meeting. Keys reflect the observed Teams state. Requires .NET 10 Desktop Runtime (Windows x64), installed separately. Japanese interface; English Teams labels are recognized but have not been verified in a live meeting. Personal Teams accounts have been tested; work and school accounts need further validation. Uses Windows UI Automation, with no Teams OAuth or app registration. Teams can briefly come to the foreground during microphone or camera operations. This independent plugin is not affiliated with Microsoft or Elgato. AI assistance was used for implementation, documentation and promotional graphics.",
+  "URL": "https://github.com/y2sys/Teams-UIA-Controls",
+  "Version": "0.2.4.0",
   "SDKVersion": 2,
   "CodePath": "bin/plugin.js",
   "Nodejs": {
@@ -35,7 +36,7 @@
       "PropertyInspectorPath": "ui/settings.html",
       "States": [
         {
-          "Image": "imgs/microphone",
+          "Image": "imgs/microphone-key",
           "ShowTitle": false
         }
       ]
@@ -52,7 +53,7 @@
       "PropertyInspectorPath": "ui/settings.html",
       "States": [
         {
-          "Image": "imgs/camera",
+          "Image": "imgs/camera-key",
           "ShowTitle": false
         }
       ]
@@ -69,7 +70,7 @@
       "PropertyInspectorPath": "ui/settings.html",
       "States": [
         {
-          "Image": "imgs/share",
+          "Image": "imgs/share-key",
           "ShowTitle": false
         }
       ]
@@ -86,7 +87,7 @@
       "PropertyInspectorPath": "ui/settings.html",
       "States": [
         {
-          "Image": "imgs/leave",
+          "Image": "imgs/leave-key",
           "ShowTitle": false
         }
       ]

@@ -41,6 +41,14 @@ During microphone/camera actions, Teams may briefly come to the foreground.
 The helper attempts to restore the previous window, but will stop if the user
 intervenes. UI changes in a Teams update can require a plugin update.
 
+When Windows Remote Desktop Connection (mstsc) is foreground in full-screen mode,
+all four actions share a preparation step that briefly focuses its connection bar
+before operating Teams. A hidden bar is shown temporarily and hidden again;
+full-screen, keyboard routing and pinning settings are not changed. A brief flash
+can occur. Mic/camera restore the original RDP input focus; sharing keeps the picker
+available. Physical input or a third-app switch cancels automated focus changes.
+Unknown RDP clients or missing bars use the ordinary UIA path instead.
+
 The Marketplace build uses a different identity from the old local development
 build. Existing local keys do not automatically migrate. Avoid assigning both
 versions to the same Multi Action or using both to send the same command.

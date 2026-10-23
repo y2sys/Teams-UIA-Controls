@@ -5,6 +5,7 @@ body{background:#2d2d2d;color:#eee;font:12px 'Segoe UI',sans-serif;padding:12px}
 <label for="target">操作するTeams会議（4ボタン共通）</label><select id="target"><option value="auto">自動選択</option></select>
 <p>デスクトップ版TeamsをWindows UI Automationで操作します。会議が1つなら自動で選択します。複数の会議がある場合は対象を指定してください。</p>
 <p>共有ボタンは共有先の選択画面を開きます。共有中は停止します。退出ボタンは通常押下で自分が退出します。</p>
+<p>.NET 10 Desktop Runtime（Windows x64）の別途インストールが必要です。<button id="runtime">ランタイムのダウンロード</button></p>
 <p id="status">Teamsの状態を確認中…</p><button id="refresh">更新</button>
 <script>
 let socket, context, actionId;
@@ -22,4 +23,5 @@ window.connectElgatoStreamDeckSocket=function(port,uuid,registerEvent,info,actio
 };
 document.getElementById('target').onchange=e=>send({event:'target',target:e.target.value});
 document.getElementById('refresh').onclick=()=>send({event:'refresh'});
+document.getElementById('runtime').onclick=()=>send({event:'open-runtime'});
 </script></body></html>

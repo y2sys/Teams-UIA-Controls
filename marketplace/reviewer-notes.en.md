@@ -1,6 +1,6 @@
 # Reviewer notes — Teams UIA Controls
 
-Publisher: y2sys. Free submission candidate, version 0.2.3.
+Publisher: y2sys. Free submission candidate, version 0.2.4.
 Plugin UUID: com.y2sys.teams-uia-controls.
 
 ## How to review
@@ -18,6 +18,14 @@ state is unknown, Teams policies prevent an action, or another UI dialog interve
 Mic/camera actions may briefly foreground Teams; the helper attempts to restore
 the previous foreground app without overriding subsequent user input.
 
+All four controls use shared preparation when the exact foreground window is a
+full-screen Windows mstsc session. Its same-process, owner-matched connection bar
+is temporarily focused; hidden bars are temporarily shown and then hidden again.
+No RDP settings or keyboard shortcuts are changed. Visible flashes can occur.
+Other RDP clients/unknown bar structures retain the ordinary UIA path. Physical
+input or a third-app switch cancels the prepared action. Sharing keeps the picker
+foreground; mic/camera restore the original RDP window and input focus.
+
 The English Marketplace description is provided for review. The plugin interface
 and on-screen notices are Japanese. This release does not claim a localized English
 interface. Labels for English Teams are recognized, but English live sessions have
@@ -30,6 +38,12 @@ and Stream Deck Neo. Automated checks cover call selection, uncertain state,
 sharing-picker retention, focus-return conditions and notice conditions. Helper
 startup/communication and package validation have also been tested. These checks
 are not evidence of a clean-PC installation or work/school account compatibility.
+
+The 0.2.4 helper was additionally tested through its JSON bridge with full-screen
+mstsc foreground: microphone/camera toggles and the sharing picker succeeded.
+The live exit check succeeded with Teams foreground. See docs/RDP-VALIDATION.md
+for timings and limits; a live full-screen-RDP exit and actual source sharing/stop
+were not repeated. Final automated checks cover the delayed-activation guard.
 
 Before submission: complete the live candidate-package test and attach a short
 demonstration video. At document creation the video and clean-PC test are pending.

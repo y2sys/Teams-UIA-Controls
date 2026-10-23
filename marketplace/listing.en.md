@@ -6,7 +6,7 @@ Maker: y2sys
 
 Price: Free
 
-Version: 0.2.3
+Version: 0.2.4
 
 ## Description (paste this section only)
 
@@ -21,6 +21,8 @@ Control Microsoft Teams desktop meetings from Stream Deck on Windows 11. Toggle 
 - Required .NET Desktop Runtime: https://dotnet.microsoft.com/en-us/download/dotnet/10.0
 
 ## Release notes
+
+Version 0.2.4 adds shared full-screen mstsc preparation for all four actions to avoid a focus-related delay. Hidden connection bars are restored to hidden without changing RDP settings. Mic/camera preserve the original RDP input focus; sharing keeps the source picker available. User input cancels automated focus changes.
 
 Initial Marketplace candidate. Four Teams meeting controls: microphone, camera, screen share picker/stop and leave. Observed-state key feedback, automatic selection of one detected meeting, manual selection when several meetings are detected, and brief confirmed microphone/camera notices. Requires Windows 11 x64, Stream Deck 7.1 or later and a separately installed .NET 10 Desktop Runtime (Windows x64). Japanese interface. Published separately from the earlier local development plugin; keys must be added again.
 

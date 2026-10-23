@@ -51,6 +51,7 @@ var deduped = TeamsController.Deduplicate([full, compact, other]);
 Check(deduped.Count == 2 && deduped[0] == full && deduped[1] == other, "Compact duplicates cannot appear as simultaneous calls");
 var transition = TeamsController.TransitionFrom(full, full, true);
 Check(transition.InMeeting && transition.Picker && transition.LastKnown == full && transition.Capabilities.Values.All(value => !value), "Picker preserves display but disables commands");
+RdpChecks.Run(Check);
 Console.WriteLine($"C# helper: {checks} behavior checks passed");
 
 if (args is ["--osd-preview", var image])

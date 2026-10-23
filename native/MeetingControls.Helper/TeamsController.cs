@@ -128,6 +128,8 @@ public sealed class TeamsController
         return (sessions[0], element, (uint)windows[command.SessionId].Current.ProcessId);
     }
 
+    public IntPtr MeetingWindow(string sessionId) => new(windows[sessionId].Current.NativeWindowHandle);
+
     public void Invoke(HelperCommand command, AutomationElement element)
     {
         if (element.TryGetCurrentPattern(InvokePattern.Pattern, out var pattern)) { ((InvokePattern)pattern).Invoke(); return; }
